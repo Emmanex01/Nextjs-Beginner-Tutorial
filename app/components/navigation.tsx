@@ -1,4 +1,5 @@
 "use client";
+import { SignedIn, SignedOut, SignIn, SignInButton, SignOutButton, UserButton } from "@clerk/nextjs";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
@@ -8,6 +9,7 @@ export const Navigation = () => {
     const pathname = usePathname()
     return (
         <nav>
+            
             <Link 
                 href="/"
                 className={pathname === '/' ? "text-red-300" : "text-black"}
@@ -30,6 +32,20 @@ export const Navigation = () => {
             >
                 About22
             </Link>
+
+            {/* SignedOut Element is used to conditionally display the SignInBtn when the user is signed out */}
+            <SignedOut>
+                <SignInButton mode="modal"/>
+            </SignedOut>
+
+            {/* SignedIn Element is used to conditionally display the UserBtn when the user is signed in */}
+            <SignedIn>
+                {/* UserButton is used to manage user account */}
+                <UserButton/>
+            </SignedIn>
+            
+            
+            
         </nav>
     )
 }
